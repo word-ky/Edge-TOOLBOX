@@ -1,5 +1,5 @@
 ## Project Overview
-<img src="https://github.com/user-attachments/assets/a49d7a2b-6010-4a29-bf59-656da7fa5e38" width="300px">
+<img src="https://github.com/user-attachments/assets/a49d7a2b-6010-4a29-bf59-656da7fa5e38" width="300px"</center>>
 
 **Efficient Detection Framework Adaptation for Edge Computing: A Plug-and-play Neural Network Toolbox Enabling Edge Deployment**
 
