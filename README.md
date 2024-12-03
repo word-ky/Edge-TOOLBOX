@@ -28,7 +28,7 @@ We present a **Edge Detection Toolbox (ED-TOOLBOX)**, which includes plug-and-pl
 
 ### TODO
 
-- We will open-source our application project on **Hugging Face** in the SPACE Section. Stay tuned.
+- We will open-source our application project on SPACE Section in the **Hugging Face**. Stay tuned.
 - We will develop more dedicated and general components to adapt to different visual models. We welcome those who are interested to collaborate or contribute.
 
 If you are interested in this project, or have any inquiries or requests, please feel free to contact us directly: **wjq11346@student.ubc.ca**
