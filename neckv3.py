@@ -6,7 +6,7 @@ import math
 
 def autopad(k, p=None, d=1):
     # kernel, padding, dilation
-    # 对输入的特征层进行自动padding，按照Same原则
+    
     if d > 1:
         # actual kernel-size
         k = d * (k - 1) + 1 if isinstance(k, int) else [d * (x - 1) + 1 for x in k]
@@ -17,14 +17,13 @@ def autopad(k, p=None, d=1):
 
 
 class SiLU(nn.Module):
-    # SiLU激活函数
-    @staticmethod
+   
     def forward(x):
         return x * torch.sigmoid(x)
 
 
 class Conv(nn.Module):
-    # 标准卷积+标准化+激活函数
+  
     default_act = SiLU()
 
     def __init__(self, c1, c2, k=1, s=1, p=None, g=1, d=1, act=True):
@@ -40,7 +39,7 @@ class Conv(nn.Module):
         return self.act(self.conv(x))
 
 class SPPF(nn.Module):
-    # SPP结构，5、9、13最大池化核的最大池化。
+    
     def __init__(self, c1, c2, k=5):
         super().__init__()
         c_          = c1 // 2
@@ -123,7 +122,7 @@ class attention(nn.Module):
         in_all = in_1.mul(in_2)
         in_all = in_all.mul(in_2)
         # print(in_all.shape)
-        y = torch.split(in_all, self.size, dim=2)  # 按照行维度去分，每大块包含40个小块
+        y = torch.split(in_all, self.size, dim=2) 
 
         x_h = y[0]
         x_w = y[1]
@@ -139,7 +138,7 @@ class attention(nn.Module):
         return out
 
 
-class EfficientChannelAttention(nn.Module):           # Efficient Channel Attention module
+class EfficientChannelAttention(nn.Module):          
     def __init__(self, c, b=1, gamma=2):
         super(EfficientChannelAttention, self).__init__()
         t = int(abs((math.log(c, 2) + b) / gamma))
@@ -155,16 +154,16 @@ class EfficientChannelAttention(nn.Module):           # Efficient Channel Attent
         out = self.sigmoid(x)
         return out
 
-class BasicBlock(nn.Module):      # 左侧的 residual block 结构（18-layer、34-layer）
+class BasicBlock(nn.Module):     
     expansion = 1
 
-    def __init__(self, in_planes, planes, stride=1):      # 两层卷积 Conv2d + Shutcuts
+    def __init__(self, in_planes, planes, stride=1):     
         super(BasicBlock, self).__init__()
 
-        self.channel = EfficientChannelAttention(planes)       # Efficient Channel Attention module
+        self.channel = EfficientChannelAttention(planes)      
 
         self.shortcut = nn.Sequential()
-        if stride != 1 or in_planes != self.expansion*planes:      # Shutcuts用于构建 Conv Block 和 Identity Block
+        if stride != 1 or in_planes != self.expansion*planes:      
             self.shortcut = nn.Sequential(
                 nn.Conv2d(in_planes, self.expansion*planes,
                           kernel_size=1, stride=stride, bias=False),
@@ -217,15 +216,15 @@ class neck_up(nn.Module):
         map3_up = self.upsample(map3_5)
         # print(map3_up.shape)
         map3_con = self.concat_u1(map3_up, map3)
-        map3_g = self.ghost_u1(map3_con)    # 向后下向上数第一个
+        map3_g = self.ghost_u1(map3_con)   
         map2_up = self.upsample(map3_g)
 
         map2_con = self.concat_u2(map2_up, map2)
-        map2_g = self.ghost_u2(map2_con)   # 同上，第二个
+        map2_g = self.ghost_u2(map2_con)   
         map1_up = self.upsample(map2_g)
 
         map1_con = self.concat_u3(map1_up, map1)
-        map1_g = self.ghost_u3(map1_con)   # 同上，第三个
+        map1_g = self.ghost_u3(map1_con)   
 
         # print(map1_g.shape)
         return map1_g, map2_g, map3_g
@@ -242,15 +241,15 @@ class neck_down(nn.Module):
         self.concat_d2 = concat(size=40, channel=256)
 
     def forward(self, down1, down2, down3):
-        down1_gb = self.ghost_cbs1(down1)   # down1第一个输出
+        down1_gb = self.ghost_cbs1(down1)  
         # print(down1_gb.shape)
         down1_con = self.concat_d1(down1_gb, down2)
 
-        down1_g = self.ghost_d1(down1_con)  # 第二个输出
+        down1_g = self.ghost_d1(down1_con) 
         down2_gb = self.ghost_cbs2(down1_g)
         down2_con = self.concat_d2(down2_gb, down3)
 
-        down2_g = self.ghost_d2(down2_con)  # 第三个输出
+        down2_g = self.ghost_d2(down2_con) 
 
         # print(down2_g.shape)
         return down1, down1_g, down2_g
@@ -269,17 +268,4 @@ class neck(nn.Module):
         return fea1, fea2, fea3
 
 
-# import torch
-# import torchvision
-# # 导入torchsummary
-# from torchsummary import summary
-#
-# # 需要使用device来指定网络在GPU还是CPU运行
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-#
-# # 建立神经网络模型，这里直接导入已有模型
-# # model = model().to(device)
-# model = neck().to(device)
-# # 使用summary，注意输入维度的顺序
-# summary(model, input_data=(torch.ones(1, 128, 160, 160), torch.ones(1, 256, 80, 80), torch.ones(1, 512, 40, 40),
-#                            torch.ones(1, 512, 20, 20)))
+
