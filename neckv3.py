@@ -38,6 +38,7 @@ class Conv(nn.Module):
     def forward_fuse(self, x):
         return self.act(self.conv(x))
 
+#Due to the requirements of this version, SPPF has been classified under the Neck. However, according to the conventional YOLO framework, SPPF should be in the Backbone. Please make the necessary adjustments.
 class SPPF(nn.Module):
     
     def __init__(self, c1, c2, k=5):
