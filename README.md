@@ -18,10 +18,7 @@ We present a **Edge Detection Toolbox (ED-TOOLBOX)**, which includes plug-and-pl
 - **Sparse Cross-Attention (SC-A) Module**: Efficient adaptive connections between different model modules through high-performance self-attention calculation, with no parameters.
 - **Joint Module**: Optimized detection module named following the YOLO (You Only Look Once) family naming convention.
 - **Efficient Head**: For the most popular YOLO detection methods, an **Efficient Head** is proposed to achieve full-edge optimization.
-
-### Helmet Strap Detection Dataset (HBDD)
-
-We found that existing helmet detection tasks focus only on whether a helmet is worn, but overlook the wearing of helmet straps. This not only violates safety regulations but also poses safety risks. To address this, we contribute the **HBDD** dataset and plan to apply **GL-TOOLBOX** for edge detection in this real industrial scene.
+- **Helmet Strap Detection Dataset (HBDD)**:We found that existing helmet detection tasks focus only on whether a helmet is worn, but overlook the wearing of helmet straps. This not only violates safety regulations but also poses safety risks. To address this, we contribute the **HBDD** dataset and plan to apply **GL-TOOLBOX** for edge detection in this real industrial scene.
 
 ### Code and Dataset
 - **Environment**: Please use the Autodl (https://www.autodl.com/home) community mirror environment: **ultralytics/ultralytics/yolov8 / v8.3** 
