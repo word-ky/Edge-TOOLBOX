@@ -7,7 +7,7 @@ Existing edge detection methods suffer from several issues, including:
 2. **Lack of dedicated design for edge deployment**
 3. **No validation in real-world scenarios**
 
-We present a ** Edge Detection Toolbox (ED-TOOLBOX)**, which includes plug-and-play components tailored specifically for detection models. This toolbox enables edge optimization without altering the original model architecture and, most importantly, maintains or even improves model performance.
+We present a **Edge Detection Toolbox (ED-TOOLBOX)**, which includes plug-and-play components tailored specifically for detection models. This toolbox enables edge optimization without altering the original model architecture and, most importantly, maintains or even improves model performance.
 
 ### Key Contributions
 
