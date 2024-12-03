@@ -21,7 +21,7 @@ We present a **Edge Detection Toolbox (ED-TOOLBOX)**, which includes plug-and-pl
 We found that existing helmet detection tasks focus only on whether a helmet is worn, but overlook the wearing of helmet straps. This not only violates safety regulations but also poses safety risks. To address this, we contribute the **HBDD** dataset and plan to apply **GL-TOOLBOX** for edge detection in this real industrial scene.
 
 ### Code and Dataset
-- **Environment**: Please use the Autodl community mirror environment: **ultralytics/ultralytics/yolov8 / v8.3** 
+- **Environment**: Please use the Autodl (https://www.autodl.com/home) community mirror environment: **ultralytics/ultralytics/yolov8 / v8.3** 
 - **Code**: The code is currently under review for 'software publication' for potential future commercial collaboration. Therefore, it is subject to a 'proprietary licensing agreement (PLA)', which means we are unable to provide the source code directly. However, we are offering a similar version that closely mirrors the one described in the paper.
 - **Dataset**: The HBDD Dataset was developed in collaboration with **Victorysoft** company. As a result, we are unable to release the full dataset. However, we will open-source a portion of the unlabeled test set. To gain access to the complete dataset, please contact us at: wjq11346@student.ubc.ca, with the assurance that the data will not be used for commercial purposes. We reserve the right to take legal action in the event of any infringement.
 
